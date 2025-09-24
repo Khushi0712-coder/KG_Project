@@ -2,10 +2,17 @@ import React, { useEffect, useState } from "react";
 import { useCart } from "../context/CartContext";
 import Checkout from "./Checkout"; // ✅ import Checkout modal
 import "../components/Cart.css";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
   const { cart, increaseQty, decreaseQty, removeFromCart } = useCart();
   const [total, setTotal] = useState(0);
+
+  const navigate = useNavigate();
+
+  const goToProducts = () => {
+    navigate("/products"); // frontend routing
+  };
 
   // ✅ Modal state
   const [showCheckout, setShowCheckout] = useState(false);
@@ -26,7 +33,7 @@ const Cart = () => {
   return (
     <section className="cart-section py-5 bg-light">
       <div className="container">
-        <h2 className="fw-bold mb-4 d-flex align-items-center fs-2" >
+        <h2 className="fw-bold mb-4 d-flex align-items-center fs-2">
           <i className="bi bi-bag-check me-2 fs-2"></i> Shopping Cart
           <span className="badge bg-dark ms-3 fs-6">{cart.length} items</span>
         </h2>
@@ -105,7 +112,7 @@ const Cart = () => {
               <div className="d-flex gap-3 mt-3">
                 <button
                   className="btn btn-outline-secondary flex-grow-1 fs-6 py-2 shadow-sm"
-                  onClick={() => (window.location.href = "/")}
+                  onClick={goToProducts}
                 >
                   Save for Later
                 </button>
@@ -116,69 +123,68 @@ const Cart = () => {
             </div>
 
             {/* Order Summary */}
-<div className="col-lg-4">
-  <div
-    className="bg-white rounded-4 shadow-lg p-4"
-    style={{
-      position: "sticky",
-      top: "90px",       // 🔥 makes it stable while scrolling
-      alignSelf: "flex-start",
-    }}
-  >
-    <h5 className="fw-bold mb-4 fs-4">Order Summary</h5>
+            <div className="col-lg-4">
+              <div
+                className="bg-white rounded-4 shadow-lg p-4"
+                style={{
+                  position: "sticky",
+                  top: "90px", // 🔥 makes it stable while scrolling
+                  alignSelf: "flex-start",
+                }}
+              >
+                <h5 className="fw-bold mb-4 fs-4">Order Summary</h5>
 
-    <div className="d-flex justify-content-between mb-2 fs-6">
-      <span>Subtotal ({cart.length} items)</span>
-      <span>₹{total}</span>
-    </div>
-    <div className="d-flex justify-content-between mb-2 fs-6">
-      <span>Shipping</span>
-      <span className="text-success">Free</span>
-    </div>
-    <div className="d-flex justify-content-between mb-3 fs-6">
-      <span>Tax</span>
-      <span>₹{(total * 0.08).toFixed(2)}</span>
-    </div>
+                <div className="d-flex justify-content-between mb-2 fs-6">
+                  <span>Subtotal ({cart.length} items)</span>
+                  <span>₹{total}</span>
+                </div>
+                <div className="d-flex justify-content-between mb-2 fs-6">
+                  <span>Shipping</span>
+                  <span className="text-success">Free</span>
+                </div>
+                <div className="d-flex justify-content-between mb-3 fs-6">
+                  <span>Tax</span>
+                  <span>₹{(total * 0.08).toFixed(2)}</span>
+                </div>
 
-    <hr />
+                <hr />
 
-    <div className="d-flex justify-content-between fw-bold fs-4 mb-3">
-      <span>Total</span>
-      <span>₹{(total + total * 0.08).toFixed(2)}</span>
-    </div>
+                <div className="d-flex justify-content-between fw-bold fs-4 mb-3">
+                  <span>Total</span>
+                  <span>₹{(total + total * 0.08).toFixed(2)}</span>
+                </div>
 
-    {/* Promo Code */}
-    <div className="input-group mb-3">
-      <input
-        type="text"
-        className="form-control fs-6"
-        placeholder="Enter code"
-      />
-      <button className="btn btn-outline-dark fs-6">Apply</button>
-    </div>
+                {/* Promo Code */}
+                <div className="input-group mb-3">
+                  <input
+                    type="text"
+                    className="form-control fs-6"
+                    placeholder="Enter code"
+                  />
+                  <button className="btn btn-outline-dark fs-6">Apply</button>
+                </div>
 
-    {/* ✅ Open Checkout Modal Instead of Redirect */}
-    <button
-      className="btn btn-dark w-100 fw-bold mb-2 fs-6 py-2 shadow-sm"
-      onClick={() => {
-        setShowCheckout(true);
-        setCheckoutStep(1);
-      }}
-    >
-      Proceed to Checkout
-    </button>
+                {/* ✅ Open Checkout Modal Instead of Redirect */}
+                <button
+                  className="btn btn-dark w-100 fw-bold mb-2 fs-6 py-2 shadow-sm"
+                  onClick={() => {
+                    setShowCheckout(true);
+                    setCheckoutStep(1);
+                  }}
+                >
+                  Proceed to Checkout
+                </button>
 
-    <button
-      className="btn btn-outline-secondary w-100 fs-6 py-2"
-      onClick={() => (window.location.href = "/products")}
-    >
-      Continue Shopping
-    </button>
-  </div>
-</div>
-
+                <button
+                  className="btn btn-outline-secondary w-100 fs-6 py-2"
+                  onClick={() => (window.location.href = "/products")}
+                >
+                  Continue Shopping
+                </button>
+              </div>
+            </div>
           </div>
-        )} 
+        )}
       </div>
 
       {/* ✅ Checkout Modal */}
