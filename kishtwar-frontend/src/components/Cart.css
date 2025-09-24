@@ -1,5 +1,5 @@
 /* ===============================
-   Empty Cart Section (Compact + Hover Card)
+   Empty Cart Section
 =============================== */
 .empty-cart-section {
   background: #fefef3;
@@ -78,43 +78,37 @@
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
 }
 
-
-/* ===============================
-   Features Section
-=============================== */
-.features-section {
-  background: #fcfbf7;
-  padding: 70px 0;
-}
-
-.features-section .feature-icon {
-  font-size: 2.6rem;
-  color: #ffc107;
-  transition: transform 0.3s ease, color 0.3s ease;
-}
-
-.features-section .feature-icon:hover {
-  transform: scale(1.15);
-  color: #ff9900;
-}
-
-.features-section h5 {
-  margin-top: 10px;
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: #222;
-}
-
-.features-section p {
-  font-size: 0.95rem;
-  color: #555;
-  margin-bottom: 0;
-}
-
-
 /* ===============================
    Cart Items Styling
 =============================== */
+.cart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.cart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cart-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cart-footer {
+  display: none; /* only visible on mobile */
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
 .remove-btn {
   font-size: 0.85rem;
   text-decoration: none;
@@ -135,4 +129,34 @@
   border: 1px solid #ddd;
   border-radius: 6px;
   padding: 4px;
+}
+
+/* ✅ Mobile view */
+@media (max-width: 768px) {
+  .cart-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cart-header {
+    width: 100%;
+  }
+
+  /* hide desktop qty actions */
+  .cart-actions {
+    display: none !important;
+  }
+
+  /* show mobile footer with qty (left) + remove (right) */
+  .cart-footer {
+    display: flex !important;
+    gap: 12px;
+  }
+}
+
+/* ✅ Desktop view */
+@media (min-width: 769px) {
+  .cart-footer {
+    display: none !important;
+  }
 }

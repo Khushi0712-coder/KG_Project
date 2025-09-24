@@ -60,7 +60,7 @@ const Cart = () => {
                 {cart.map((item) => (
                   <div
                     key={item.id}
-                    className="d-flex align-items-center justify-content-between py-3 border-bottom"
+                    className="cart-item py-3 border-bottom"
                   >
                     {/* Product Image & Info */}
                     <div className="d-flex align-items-center gap-3 flex-grow-1">
@@ -74,14 +74,42 @@ const Cart = () => {
                           objectFit: "cover",
                         }}
                       />
-                      <div>
-                        <h5 className="fw-semibold mb-1 fs-5">{item.name}</h5>
+                      <div className="w-100">
+                        {/* ✅ Product Name only in desktop */}
+                        <div className="cart-header">
+                          <h5 className="fw-semibold mb-1 fs-5">{item.name}</h5>
+                        </div>
                         <p className="text-muted mb-0 fs-6">₹{item.price}</p>
                       </div>
                     </div>
 
-                    {/* Quantity Controls */}
-                    <div className="d-flex align-items-center gap-2">
+                    {/* ✅ Qty + Remove (mobile view) */}
+                    <div className="cart-footer d-flex d-md-none w-100 mt-2">
+                      <div className="cart-actions d-flex align-items-center gap-2">
+                        <button
+                          className="btn btn-outline-dark btn-sm px-3 fs-5"
+                          onClick={() => decreaseQty(item.id)}
+                        >
+                          −
+                        </button>
+                        <span className="fw-bold fs-5">{item.qty}</span>
+                        <button
+                          className="btn btn-outline-dark btn-sm px-3 fs-5"
+                          onClick={() => increaseQty(item.id)}
+                        >
+                          +
+                        </button>
+                      </div>
+                      <button
+                        className="btn btn-link text-danger fs-5 remove-btn"
+                        onClick={() => removeFromCart(item.id)}
+                      >
+                        <i className="bi bi-trash fs-4"></i>
+                      </button>
+                    </div>
+
+                    {/* ✅ Qty + Remove (desktop view → side by side) */}
+                    <div className="cart-actions d-none d-md-flex align-items-center gap-2 mt-2 mt-md-0">
                       <button
                         className="btn btn-outline-dark btn-sm px-3 fs-5"
                         onClick={() => decreaseQty(item.id)}
@@ -95,15 +123,15 @@ const Cart = () => {
                       >
                         +
                       </button>
-                    </div>
 
-                    {/* Remove Button */}
-                    <button
-                      className="btn btn-link text-danger ms-3 fs-5"
-                      onClick={() => removeFromCart(item.id)}
-                    >
-                      <i className="bi bi-trash fs-4"></i>
-                    </button>
+                      {/* ✅ Remove icon desktop me qty ke right me */}
+                      <button
+                        className="btn btn-link text-danger fs-5 remove-btn ms-2"
+                        onClick={() => removeFromCart(item.id)}
+                      >
+                        <i className="bi bi-trash fs-4"></i>
+                      </button>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -128,7 +156,7 @@ const Cart = () => {
                 className="bg-white rounded-4 shadow-lg p-4"
                 style={{
                   position: "sticky",
-                  top: "90px", // 🔥 makes it stable while scrolling
+                  top: "90px",
                   alignSelf: "flex-start",
                 }}
               >
@@ -164,7 +192,7 @@ const Cart = () => {
                   <button className="btn btn-outline-dark fs-6">Apply</button>
                 </div>
 
-                {/* ✅ Open Checkout Modal Instead of Redirect */}
+                {/* ✅ Open Checkout Modal */}
                 <button
                   className="btn btn-dark w-100 fw-bold mb-2 fs-6 py-2 shadow-sm"
                   onClick={() => {
