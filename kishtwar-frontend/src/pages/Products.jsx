@@ -6,7 +6,7 @@ import saffron2 from "../assets/2nd.jpeg";
 import giftbox from "../assets/giftbox.jpeg";
 import Checkout from "./Checkout";
 import { useCart } from "../context/CartContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Product = () => {
   // ✅ Product Data
@@ -64,10 +64,11 @@ const Product = () => {
   // ✅ Cart context
   const { cart, addToCart, clearCart, setCart } = useCart();
 
+  const navigate = useNavigate();
+
   // ✅ Local UI states
   const [category, setCategory] = useState("all");
   const [sort, setSort] = useState("name");
-  //  const [cart, setCart] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [checkoutStep, setCheckoutStep] = useState(1);
   const [showCheckout, setShowCheckout] = useState(false);
@@ -91,10 +92,12 @@ const Product = () => {
       JSON.stringify([...existingCart, { ...product, qty: 1 }])
     );
   };
+
   const buyNow = (product) => {
     setShowCheckout(true);
     setCheckoutStep(1);
   };
+
   const nextStep = () => setCheckoutStep((prev) => Math.min(prev + 1, 3));
   const prevStep = () => setCheckoutStep((prev) => Math.max(prev - 1, 1));
 
@@ -174,67 +177,72 @@ const Product = () => {
 
           {/* Product Grid */}
           <div className="row g-4">
-            {filteredProducts.map((product) => (
-              <div
-                key={product.id}
-                className="col-md-4 product-card"
-                data-category={product.category}
-              >
-                <div className="card shadow-sm border-3 rounded-4 h-100">
-                  <div className="position-relative text-center p-4 bg-light rounded-top">
-                    <span className={`product-badge badge-${product.category}`}>
-                      {product.category.toUpperCase()}
-                    </span>
-                    <img
-                      src={product.img}
-                      className="card-img-top"
-                      alt={product.name}
-                    />
-                  </div>
-                  <div className="card-body text-center d-flex flex-column">
-                    <h5 className="fw-bold">{product.name}</h5>
-                    <p className="text-muted">{product.desc}</p>
-                    <h3 className="text-warning fw-bold mb-3">
-                      ₹{product.price}
-                    </h3>
-                    <div className="d-flex justify-content-center gap-3 mt-auto">
-                      <button
-                        className={`btn fw-bold ${
-                          cart.some((item) => item.id === product.id)
-                            ? "btn-success"
-                            : "btn-warning"
-                        }`}
-                        onClick={() => handleAddToCart(product)}
-                        disabled={cart.some((item) => item.id === product.id)}
+            {filteredProducts.map((product) => {
+              const inCart = cart.some((item) => item.id === product.id);
+
+              return (
+                <div
+                  key={product.id}
+                  className="col-md-4 product-card"
+                  data-category={product.category}
+                >
+                  <div className="card shadow-sm border-3 rounded-4 h-100">
+                    <div className="position-relative text-center p-4 bg-light rounded-top">
+                      <span
+                        className={`product-badge badge-${product.category}`}
                       >
-                        {cart.some((item) => item.id === product.id) ? (
-                          "Added"
+                        {product.category.toUpperCase()}
+                      </span>
+                      <img
+                        src={product.img}
+                        className="card-img-top"
+                        alt={product.name}
+                      />
+                    </div>
+                    <div className="card-body text-center d-flex flex-column">
+                      <h5 className="fw-bold">{product.name}</h5>
+                      <p className="text-muted">{product.desc}</p>
+                      <h3 className="text-warning fw-bold mb-3">
+                        ₹{product.price}
+                      </h3>
+                      <div className="d-flex justify-content-center gap-3 mt-auto">
+                        {inCart ? (
+                          <button
+                            className="btn btn-success fw-bold"
+                            onClick={() => navigate("/cart")}
+                          >
+                            <i className="fa-solid fa-cart-shopping me-2"></i>
+                            Go to Cart
+                          </button>
                         ) : (
-                          <>
+                          <button
+                            className="btn btn-warning fw-bold"
+                            onClick={() => handleAddToCart(product)}
+                          >
                             <i className="fa-solid fa-cart-shopping me-2"></i>
                             Add to Cart
-                          </>
+                          </button>
                         )}
-                      </button>
 
+                        <button
+                          className="btn btn-dark fw-bold"
+                          onClick={() => buyNow(product)}
+                        >
+                          <i className="fa-solid fa-bag-shopping me-2"></i> Buy
+                          Now
+                        </button>
+                      </div>
                       <button
-                        className="btn btn-dark fw-bold"
-                        onClick={() => buyNow(product)}
+                        className="btn btn-link mt-3 text-decoration-none"
+                        onClick={() => setSelectedProduct(product)}
                       >
-                        <i className="fa-solid fa-bag-shopping me-2"></i> Buy
-                        Now
+                        View Details
                       </button>
                     </div>
-                    <button
-                      className="btn btn-link mt-3 text-decoration-none"
-                      onClick={() => setSelectedProduct(product)}
-                    >
-                      View Details
-                    </button>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
 
@@ -300,15 +308,6 @@ const Product = () => {
         )}
 
         {/* ✅ Checkout Modal */}
-        {/* <Checkout
-          showCheckout={showCheckout}
-          setShowCheckout={setShowCheckout}
-          checkoutStep={checkoutStep}
-          nextStep={nextStep}
-          prevStep={prevStep}
-          setCart={setCart}
-        /> */}
-
         {showCheckout && (
           <Checkout
             showCheckout={showCheckout}
