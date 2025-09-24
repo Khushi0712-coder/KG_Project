@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../Components/Contact.css";
+import "../components/Contact.css";
 import aboutImg from "../assets/Saffron.png";
 
 const Contact = () => {
