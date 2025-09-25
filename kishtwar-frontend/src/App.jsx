@@ -1,6 +1,6 @@
 // src/App.jsx
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React, { useLayoutEffect } from "react";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
@@ -14,10 +14,25 @@ import Contact from "./pages/Contact";
 import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 
-function App() {
+// ✅ Scroll-to-top on route change (professional way)
+function ScrollToTopWrapper({ children }) {
+  const { pathname } = useLocation();
+
+  useLayoutEffect(() => {
+    // Instantly scroll to top without flicker
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "auto" // instant, professional scroll
+    });
+  }, [pathname]);
+
+  return children;
+}
+
+function AppContent() {
   return (
-    <Router>
-      {/* ✅ Navbar har page pe show hoga */}
+    <>
       <Navbar />
 
       <main className="content">
@@ -33,8 +48,17 @@ function App() {
         </Routes>
       </main>
 
-      {/* ✅ Footer har page pe show hoga */}
       <Footer />
+    </>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <ScrollToTopWrapper>
+        <AppContent />
+      </ScrollToTopWrapper>
     </Router>
   );
 }
