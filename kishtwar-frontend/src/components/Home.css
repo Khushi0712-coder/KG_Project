@@ -7,21 +7,22 @@
 --------------------------------*/
 .hero {
   position: relative;
-  width: 100%; /* Full width maintained */
-  max-width: 1500px; /* Container ke equal width */
-  margin: 0 auto; /* Center align */
+  width: 100%;             /* Full width maintained */
+  max-width: 1500px;       /* Container ke equal width */
+  margin: 0 auto;          /* Center align */
   overflow: hidden;
-  background-size: cover; /* Horizontally cover */
+  background-size: cover;  /* Horizontally cover */
   background-position: center;
-
+  
   display: flex;
-  flex-direction: column; /* Content vertically stack ho */
+  flex-direction: column;  /* Content vertically stack ho */
   align-items: center;
   justify-content: center;
 
-  padding: 4rem 1rem; /* Content ke around height adjust */
-  height: auto; /* ✅ height content ke hisaab se adjust ho */
+  padding: 4rem 1rem;      /* Content ke around height adjust */
+  height: auto;            /* ✅ height content ke hisaab se adjust ho */
 }
+
 
 .hero .overlay {
   position: absolute;
