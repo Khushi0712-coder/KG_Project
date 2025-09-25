@@ -373,10 +373,9 @@ const Product = () => {
                     <i className="fas fa-award fa-2x text-black"></i>
                   </span>
                 </div>
-                <h5 className="fw-bold">AWARD WINNING</h5>
+                <h5 className="fw-bold">PREMIUM QUALITY</h5>
                 <p className="text-muted">
-                  Our saffron has won multiple awards for its superior quality
-                  and authentic taste.
+                  Handpicked saffron with unmatched purity and rich flavor for your culinary delights.
                 </p>
               </div>
             </div>
