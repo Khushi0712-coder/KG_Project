@@ -142,7 +142,7 @@ const Footer = () => {
           >
             <p><i className="fa-solid fa-location-dot"></i> Kishtwar, Jammu & Kashmir, India</p>
             <p><i className="fa-solid fa-phone"></i> +91 81690 45778</p>
-            <p><i className="fa-solid fa-envelope"></i> support@kishtwargold.com</p>
+            <p><i className="fa-solid fa-envelope"></i> <a href="mailto:support@kishtwargold.com">support@kishtwargold.com</a></p>
             <p><i className="fa-solid fa-clock"></i> Mon - Sat: 9:00 AM - 7:00 PM</p>
 
             <h4 className="newsletter-heading">Newsletter</h4>
