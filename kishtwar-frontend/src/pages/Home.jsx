@@ -57,7 +57,7 @@ const Home = () => {
     <div className="page-wrapper">
       {/* ✅ Hero Section */}
       <section
-        className="hero text-white w-screen"
+        className="hero text-white"
         style={{ background: `url(${heroImg}) no-repeat center center/cover` }}
       >
         <div className="overlay"></div>

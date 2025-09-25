@@ -10,15 +10,22 @@
 --------------------------------*/
 .about-hero {
   position: relative;
-  min-height: 70vh;
+  width: 100%;             /* Full width maintained */
+  max-width: 1500px;       /* Container ke equal width */
+  margin: 0 auto;          /* Center align */
+  overflow: hidden;
+  background-size: cover;  /* Horizontally cover */
+  background-position: center;
+  
   display: flex;
+  flex-direction: column;  /* Content vertically stack ho */
   align-items: center;
   justify-content: center;
-  padding: 4rem 1rem;
-  text-align: center;
-  background: linear-gradient(to right, purple, #e68900);
-  color: #fff;
+
+  padding: 4rem 1rem;      /* Content ke around height adjust */
+  height: auto;            /* ✅ height content ke hisaab se adjust ho */
 }
+
 
 .about-hero .overlay {
   position: absolute;
