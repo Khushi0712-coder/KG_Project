@@ -1,18 +1,33 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import logo from "../assets/logo.png"; // ✅ replace with your logo path
+import React, { useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import logo from "../assets/logo.png";
 import "./Navbar.css";
-
-// ✅ Import useCart from context
 import { useCart } from "../context/CartContext";
+import { Collapse } from "bootstrap";
 
 const Navbar = () => {
-  const { cart } = useCart(); // ✅ get cart from context
+  const { cart } = useCart();
+  const location = useLocation();
+
+  useEffect(() => {
+    const bsCollapse = document.getElementById("navbarNav");
+    if (bsCollapse && window.innerWidth < 992) {
+      let collapse = Collapse.getInstance(bsCollapse);
+      if (!collapse) {
+        collapse = new Collapse(bsCollapse, { toggle: false }); // init without animation
+      }
+
+      // ✅ Instant hide (no slide)
+      bsCollapse.classList.remove("collapsing", "show"); // remove Bootstrap animation classes
+      bsCollapse.style.height = "0px"; // immediately set height to 0
+      bsCollapse.classList.add("collapse");
+    }
+  }, [location]);
 
   return (
     <nav className="navbar navbar-expand-lg sticky-top custom-navbar">
       <div className="container">
-        {/* ✅ Brand */}
+        {/* Brand */}
         <Link className="navbar-brand d-flex align-items-center" to="/">
           <img src={logo} alt="Logo" />
           <div className="brand-text d-none d-sm-block">
@@ -21,7 +36,7 @@ const Navbar = () => {
           </div>
         </Link>
 
-        {/* ✅ Toggler for Mobile */}
+        {/* Toggler */}
         <button
           className="navbar-toggler ms-auto"
           type="button"
@@ -34,54 +49,25 @@ const Navbar = () => {
           <i className="fas fa-bars text-dark"></i>
         </button>
 
-        {/* ✅ Navbar Links */}
-        <div
-          className="collapse navbar-collapse justify-content-lg-end"
-          id="navbarNav"
-        >
+        {/* Navbar Links */}
+        <div className="collapse navbar-collapse justify-content-lg-end" id="navbarNav">
           <ul className="navbar-nav align-items-lg-center text-center">
-            <li className="nav-item">
-              <Link className="nav-link" to="/">
-                HOME
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/products">
-                PRODUCTS
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/about">
-                ABOUT
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/review">
-                REVIEWS
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/faq">
-                FAQ
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/contact">
-                CONTACT
-              </Link>
-            </li>
+            <li className="nav-item"><Link className="nav-link" to="/">HOME</Link></li>
+            <li className="nav-item"><Link className="nav-link" to="/products">PRODUCTS</Link></li>
+            <li className="nav-item"><Link className="nav-link" to="/about">ABOUT</Link></li>
+            <li className="nav-item"><Link className="nav-link" to="/review">REVIEWS</Link></li>
+            <li className="nav-item"><Link className="nav-link" to="/faq">FAQ</Link></li>
+            <li className="nav-item"><Link className="nav-link" to="/contact">CONTACT</Link></li>
 
-            {/* ✅ Cart */}
+            {/* Cart */}
             <li className="nav-item">
               <Link className="nav-link position-relative" to="/cart">
                 <i className="fas fa-shopping-cart fa-lg text-orange"></i>
-                <span id="cart-count" className="cart-count">
-                  {cart.length}
-                </span>
+                <span id="cart-count" className="cart-count">{cart.length}</span>
               </Link>
             </li>
 
-            {/* ✅ Shop Now Button */}
+            {/* Shop Now */}
             <li className="nav-item mt-2 mt-lg-0">
               <Link to="/products" className="shop-btn">
                 <i className="fas fa-bag-shopping"></i> SHOP NOW

@@ -137,7 +137,7 @@ const Cart = () => {
               </div>
 
               {/* Action Buttons */}
-              <div className="d-flex gap-3 mt-3">
+              {/* <div className="d-flex gap-3 mt-3">
                 <button
                   className="btn btn-outline-secondary flex-grow-1 fs-6 py-2 shadow-sm"
                   onClick={goToProducts}
@@ -147,7 +147,7 @@ const Cart = () => {
                 <button className="btn btn-outline-secondary flex-grow-1 fs-6 py-2 shadow-sm">
                   Add to Wishlist
                 </button>
-              </div>
+              </div> */}
             </div>
 
             {/* Order Summary */}
@@ -170,27 +170,28 @@ const Cart = () => {
                   <span>Shipping</span>
                   <span className="text-success">Free</span>
                 </div>
-                <div className="d-flex justify-content-between mb-3 fs-6">
+                {/* <div className="d-flex justify-content-between mb-3 fs-6">
                   <span>Tax</span>
                   <span>₹{(total * 0.08).toFixed(2)}</span>
-                </div>
+                </div> */}
 
                 <hr />
 
                 <div className="d-flex justify-content-between fw-bold fs-4 mb-3">
                   <span>Total</span>
-                  <span>₹{(total + total * 0.08).toFixed(2)}</span>
+                  <span>₹{total}</span>
+                  {/* <span>₹{(total + total * 0.08).toFixed(2)}</span> */}
                 </div>
 
                 {/* Promo Code */}
-                <div className="input-group mb-3">
+                {/* <div className="input-group mb-3">
                   <input
                     type="text"
                     className="form-control fs-6"
                     placeholder="Enter code"
                   />
                   <button className="btn btn-outline-dark fs-6">Apply</button>
-                </div>
+                </div> */}
 
                 {/* ✅ Open Checkout Modal */}
                 <button
