@@ -23,7 +23,7 @@ function ScrollToTopWrapper({ children }) {
     window.scrollTo({
       top: 0,
       left: 0,
-      behavior: "auto" // instant, professional scroll
+      behavior: "auto" // instant scroll
     });
   }, [pathname]);
 
@@ -31,6 +31,8 @@ function ScrollToTopWrapper({ children }) {
 }
 
 function AppContent() {
+  const location = useLocation(); // ✅ use to check current route
+
   return (
     <>
       <Navbar />
@@ -48,7 +50,8 @@ function AppContent() {
         </Routes>
       </main>
 
-      <Footer />
+      {/* ✅ Footer hidden ONLY on Cart page */}
+      {location.pathname !== "/cart" && <Footer />}
     </>
   );
 }
