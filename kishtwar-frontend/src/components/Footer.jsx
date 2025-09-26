@@ -158,9 +158,9 @@ const Footer = () => {
       <div className="footer-bottom">
         <p>© 2025 Kishtwar Gold. All rights reserved.</p>
         <div className="footer-policies">
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms of Service</a>
-          <a href="#">Shipping Policy</a>
+          <a href="/privacy-policy">Privacy Policy</a>
+          <a href="/terms-of-service">Terms of Service</a>
+          <a href="/shipping-policy">Shipping Policy</a>
         </div>
       </div>
 

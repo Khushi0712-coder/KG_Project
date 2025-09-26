@@ -13,6 +13,9 @@ import FAQ from "./pages/FAQ";
 import Contact from "./pages/Contact";
 import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsOfService from "./pages/TermsOfService";
+import ShippingPolicy from "./pages/ShippingPolicy";
 
 // ✅ Scroll-to-top on route change (professional way)
 function ScrollToTopWrapper({ children }) {
@@ -33,9 +36,17 @@ function ScrollToTopWrapper({ children }) {
 function AppContent() {
   const location = useLocation(); // ✅ use to check current route
 
+  // ✅ Hide Navbar and Footer on Privacy, Terms, and Shipping pages
+  const hideNavFooter = [
+    "/privacy-policy",
+    "/terms-of-service",
+    "/shipping-policy"
+  ].includes(location.pathname);
+
   return (
     <>
-      <Navbar />
+      {/* Navbar hidden on specified pages */}
+      {!hideNavFooter && <Navbar />}
 
       <main className="content">
         <Routes>
@@ -47,11 +58,14 @@ function AppContent() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/terms-of-service" element={<TermsOfService />} />
+          <Route path="/shipping-policy" element={<ShippingPolicy />} />
         </Routes>
       </main>
 
-      {/* ✅ Footer hidden ONLY on Cart page */}
-      {location.pathname !== "/cart" && <Footer />}
+      {/* Footer hidden on Cart AND specified pages */}
+      {!hideNavFooter && location.pathname !== "/cart" && <Footer />}
     </>
   );
 }

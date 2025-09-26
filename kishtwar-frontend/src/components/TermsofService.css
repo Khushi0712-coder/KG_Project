@@ -1,0 +1,212 @@
+/* Wrapper */
+.privacy-wrapper {
+  background: #f8fafc;
+  font-family: "Inter", "Segoe UI", sans-serif;
+  color: #e68900;
+  min-height: 100vh;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 10px; /* small side padding */
+}
+
+/* Header */
+.privacy-header {
+  position: sticky;
+  top: 0;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* space between back button and title */
+  flex-wrap: wrap; /* allows wrapping on small screens */
+  z-index: 50;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.header-text {
+  flex: 1 1 auto;
+  text-align: center;
+  min-width: 150px; /* prevents collapse */
+}
+
+.privacy-header h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.back-btn {
+  border: 1px solid #d1d5db;
+  background: #f9fafb;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.back-btn:hover {
+  background: #f3f4f6;
+}
+
+/* Layout */
+.privacy-layout {
+  display: flex;
+  flex-wrap: wrap; /* allows sidebar and content to stack on small screens */
+  gap: 20px;
+  justify-content: center;
+  max-width: 1200px;
+  margin: 40px auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Sidebar */
+.privacy-sidebar {
+  flex: 1 1 220px; /* grows/shrinks with screen */
+  max-width: 260px;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  height: auto;
+}
+
+.privacy-sidebar h2 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #e68900;
+}
+
+.privacy-sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.privacy-sidebar li {
+  margin-bottom: 10px;
+}
+
+.toc-link {
+  background: none;
+  border: none;
+  font-size: 1.05rem;
+  color: #374151;
+  cursor: pointer;
+  text-align: left;
+  transition: 0.2s;
+}
+
+.toc-link:hover {
+  color: #2563eb;
+  padding-left: 4px;
+}
+
+/* Main Content */
+.privacy-content {
+  flex: 3 1 600px; /* grow/shrink with screen */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  box-sizing: border-box;
+}
+
+.privacy-section {
+  background: #ffffff;
+  padding: 24px 28px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+  scroll-margin-top: 120px;
+}
+
+.privacy-section h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #111827;
+}
+
+.privacy-section p {
+  font-size: 1.2rem;
+  line-height: 1.75;
+  color: #4b5563;
+  margin: 0;
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .privacy-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .header-text {
+    text-align: left;
+    margin-top: 5px;
+  }
+
+  .privacy-layout {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .privacy-sidebar {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .privacy-content {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .privacy-header h1 {
+    font-size: 1.3rem;
+  }
+
+  .back-btn {
+    font-size: 0.85rem;
+    padding: 5px 10px;
+  }
+
+  .privacy-section h1 {
+    font-size: 1.3rem;
+  }
+
+  .privacy-section p {
+    font-size: 1rem;
+  }
+}
+
+/* Mobile: hide "Back" text and show only arrow */
+@media (max-width: 480px) {
+  .back-btn::after {
+    content: ""; /* hide text after arrow */
+  }
+
+  .back-btn {
+    font-size: 1.2rem; /* bigger arrow if needed */
+    padding: 6px 10px;
+    width: auto;
+  }
+
+  /* Optional: hide text using text-indent */
+  .back-btn {
+    white-space: nowrap;
+  }
+
+  .back-btn span {
+    display: none;
+  }
+}
