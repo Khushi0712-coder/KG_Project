@@ -18,8 +18,8 @@ const Navbar = () => {
       }
 
       // ✅ Instant hide (no slide)
-      bsCollapse.classList.remove("collapsing", "show"); // remove Bootstrap animation classes
-      bsCollapse.style.height = "0px"; // immediately set height to 0
+      bsCollapse.classList.remove("collapsing", "show"); 
+      bsCollapse.style.height = "0px"; 
       bsCollapse.classList.add("collapse");
     }
   }, [location]);
@@ -50,7 +50,10 @@ const Navbar = () => {
         </button>
 
         {/* Navbar Links */}
-        <div className="collapse navbar-collapse justify-content-lg-end" id="navbarNav">
+        <div
+          className="collapse navbar-collapse justify-content-lg-end"
+          id="navbarNav"
+        >
           <ul className="navbar-nav align-items-lg-center text-center">
             <li className="nav-item"><Link className="nav-link" to="/">HOME</Link></li>
             <li className="nav-item"><Link className="nav-link" to="/products">PRODUCTS</Link></li>
@@ -63,7 +66,11 @@ const Navbar = () => {
             <li className="nav-item">
               <Link className="nav-link position-relative" to="/cart">
                 <i className="fas fa-shopping-cart fa-lg text-orange"></i>
-                <span id="cart-count" className="cart-count">{cart.length}</span>
+                {cart.length > 0 && (  // ✅ show only when cart has items
+                  <span id="cart-count" className="cart-count">
+                    {cart.length}
+                  </span>
+                )}
               </Link>
             </li>
 
