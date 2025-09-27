@@ -161,10 +161,10 @@
   }
 }
 
-.review-message {
+/* .review-message {
   position: fixed;
   top: 80px;
-  right: -300px; /* start outside screen */
+  right: -300px; 
   padding: 15px 25px;
   color: rgb(78, 75, 75);
   font-size: large;
@@ -181,11 +181,11 @@
 }
 
 .review-message.success {
-  background-color: rgba(253, 223, 55, 0.658); /* green */
+  background-color: rgba(253, 223, 55, 0.658);
 }
 
 .review-message.error {
-  background-color: #dc3545; /* red */
+  background-color: #dc3545;
 }
 
 @keyframes slideIn {
@@ -198,4 +198,4 @@
   to {
     right: -350px;
   }
-}
+} */

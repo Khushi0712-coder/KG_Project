@@ -105,11 +105,11 @@
   background: #e68a00a8;
   color: #fff;
 }
-/* Popup message styles */
+/* Popup message styles
 .popup-message {
   position: fixed;
   top: 80px;
-  right: -300px; /* start outside screen */
+  right: -300px; 
   padding: 15px 25px;
   color: rgb(78, 75, 75);
   font-size: large;
@@ -121,18 +121,18 @@
 }
 
 .popup-message.show {
-  right: 20px; /* slide in */
+  right: 20px;
 }
 
 .popup-message.success {
-  background-color: rgba(253, 223, 55, 0.658); /* green */
+  background-color: rgba(253, 223, 55, 0.658); 
 }
 
 .popup-message.error {
-  background-color: #dc3545; /* red */
+  background-color: #dc3545; 
 }
 
-@media (max-width: 768px) {
+ @media (max-width: 768px) {
   .main-title {
     font-size: 2.2rem;
   }
@@ -141,8 +141,8 @@
   }
   .hero-text {
     font-size: 1rem;
-  }
-}
+  } 
+} */
 
 /* ------------------------------
    Buttons & Info
