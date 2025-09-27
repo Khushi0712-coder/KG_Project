@@ -161,7 +161,7 @@
   }
 }
 
-/* .review-message {
+.review-message {
   position: fixed;
   top: 80px;
   right: -300px; 
@@ -198,4 +198,4 @@
   to {
     right: -350px;
   }
-} */
+} 
