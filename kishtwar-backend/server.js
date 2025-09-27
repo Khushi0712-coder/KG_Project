@@ -15,11 +15,13 @@ dotenv.config();
 const app = express();
 
 // Middleware
-app.use(cors({
-  origin: process.env.CLIENT_URL || "*", // agar frontend URL pata ho to usko daalo
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true,
-}));
+app.use(
+  cors({
+    origin: "https://www.kishtwargold.com" || process.env.CLIENT_URL, // agar frontend URL pata ho to usko daalo
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
+);
 app.use(express.json());
 
 app.use("/api/users", userRoutes);
