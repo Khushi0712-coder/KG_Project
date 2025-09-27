@@ -105,6 +105,32 @@
   background: #e68a00a8;
   color: #fff;
 }
+/* Popup message styles */
+.popup-message {
+  position: fixed;
+  top: 80px;
+  right: -300px; /* start outside screen */
+  padding: 15px 25px;
+  color: rgb(78, 75, 75);
+  font-size: large;
+  border-radius: 8px;
+  font-weight: 700;
+  z-index: 9999;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: right 0.5s ease-in-out;
+}
+
+.popup-message.show {
+  right: 20px; /* slide in */
+}
+
+.popup-message.success {
+  background-color: rgba(253, 223, 55, 0.658); /* green */
+}
+
+.popup-message.error {
+  background-color: #dc3545; /* red */
+}
 
 @media (max-width: 768px) {
   .main-title {
